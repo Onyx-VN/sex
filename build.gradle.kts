@@ -9,13 +9,3 @@ plugins {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
-allprojects {
-    tasks.withType<com.android.build.gradle.tasks.ProcessAndroidResources>().configureEach {
-        doFirst {
-            val aapt2Path = File("${rootDir}/aapt2").absolutePath
-            val propertyName = "android.aapt2FromMavenOverride"
-            System.setProperty(propertyName, aapt2Path)
-            project.extensions.extraProperties.set(propertyName, aapt2Path)
-        }
-    }
-}
